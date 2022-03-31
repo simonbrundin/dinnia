@@ -21,10 +21,12 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
+  css: ['~/assets/css/main.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [
+    // '@/plugins/hasura.js'
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -38,7 +40,33 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [],
+  modules: ['@nuxtjs/apollo', '@nuxtjs/axios', '@nuxtjs/auth-next'],
+
+  router: {
+    middleware: ['auth'],
+  },
+  auth: {
+    redirect: {
+      login: '/', // redirect user when not connected
+      callback: '/auth/signed-in',
+    },
+    strategies: {
+      auth0: {
+        domain: 'simonbrundin.eu.auth0.com',
+        clientId: 'iCJbdVCxosX2LToHLuQtQrAJUD0NO3CG', // Till Auth0-applikationen
+        audience: 'recipes.noomi.land', // Till Auth0-API
+      },
+    },
+  },
+  apollo: {
+    clientConfigs: {
+      default: {
+        httpEndpoint: 'https://matkasse.hasura.app/v1/graphql',
+        tokenName: 'auth._token.auth0',
+      },
+    },
+    authenticationType: '',
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
