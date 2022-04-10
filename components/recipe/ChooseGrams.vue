@@ -1,6 +1,7 @@
 <template>
   <Modal>
     <button @click="$emit('hideChooseGrams')">Tillbaka</button>
+    <h2>Hur många gram?</h2>
     <input v-model="grams" type="number" placeholder="Hur många gram?" /><button
       @click="updateGrams()"
     >

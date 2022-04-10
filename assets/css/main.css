@@ -30,3 +30,12 @@ input {
   padding: 20px;
   background: white;
 }
+
+div {
+  font-family: 'Montserrat';
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}

@@ -1,6 +1,11 @@
 <template>
-  <div>
+  <div class="default-layout">
     <TheNavigation />
-    <Nuxt />
+    <div class="content"><Nuxt /></div>
   </div>
 </template>
+<style>
+.content {
+  padding: 16px;
+}
+</style>

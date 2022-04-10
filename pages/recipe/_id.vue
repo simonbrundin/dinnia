@@ -2,6 +2,7 @@
   <div v-if="recipe_by_pk">
     <h1>{{ recipe_by_pk.name }}</h1>
     <img class="recipe-image" :src="recipe_by_pk.image_url" />
+    <!-- Ingredienser -->
     <Recipe-IngredientList />
     <button class="add-ingredient" @click="showAddIngredient = true">
       Lägg till ingrediens
@@ -10,6 +11,8 @@
       v-if="showAddIngredient"
       @hideAddIngredient="showAddIngredient = false"
     />
+    <!-- Steg -->
+    <Recipe-Steps />
     <button class="remove-button" @click="removeRecipe">Radera recept</button>
   </div>
 </template>
@@ -84,5 +87,8 @@ export default {
 <style scoped>
 .recipe-image {
   width: 200px;
+}
+.remove-button {
+  margin: 40px 0 0 0;
 }
 </style>

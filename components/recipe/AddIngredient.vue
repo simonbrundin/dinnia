@@ -18,6 +18,11 @@
       @hideChooseGrams="showChooseGrams = false"
       @updateGrams="updateGrams"
     />
+    <Recipe-ChooseSection
+      v-show="showChooseSection"
+      @hideChooseSection="showChooseSection = false"
+      @updateSection="updateSection"
+    />
   </Modal>
 </template>
 
@@ -27,23 +32,61 @@ export default {
   data() {
     return {
       showChooseGrams: false,
+      showChooseSection: false,
       title: '',
-      grams: null,
+      grams: 0,
       ingredientId: 0,
+      sectionId: 0,
     }
   },
 
   methods: {
+    updateSection(id) {
+      this.sectionId = id
+      this.showChooseSection = false
+      this.addIngredient()
+      this.$emit('hideAddIngredient')
+    },
     updateGrams(grams) {
-      this.grams = grams
+      this.grams = parseInt(grams)
+      this.showChooseGrams = false
+      this.showChooseSection = true
     },
     async addIngredient() {
-      // Variabel på namnet
-      // const name = this.title
-      // DONE Välja gram
-      // Välja avdelning
-      // Skicka graphqlfråga för att lägga till ingrediens till receptet
+      // ------ Välja gram
+      // ------ Välja avdelning
       // Skicka graphqlfråga för att lägga till ingrediens till användarens ingredienser
+      await this.$apollo
+        .mutate({
+          mutation: gql`
+            mutation (
+              $name: String!
+              $store_section_id: Int!
+              $added_by: String!
+            ) {
+              insert_ingredient(
+                objects: {
+                  name: $name
+                  store_section_id: $store_section_id
+                  added_by: $added_by
+                }
+              ) {
+                returning {
+                  id
+                }
+              }
+            }
+          `,
+          variables: {
+            name: this.title,
+            store_section_id: this.sectionId,
+            added_by: this.$auth.user.sub,
+          },
+        })
+        .then((data) => {
+          this.ingredientId = data.data.insert_ingredient.returning[0].id
+        })
+      // Skicka graphqlfråga för att lägga till ingrediens till receptet
       await this.$apollo.mutate({
         mutation: gql`
           mutation ($ingredientId: Int!, $grams: Int!, $recipeId: Int!) {
@@ -66,6 +109,7 @@ export default {
           grams: this.grams,
         },
       })
+
       location.reload()
     },
     chooseGrams(id) {

@@ -3,12 +3,14 @@
     <h2>Mina recept</h2>
     <input v-model="title" type="text" placeholder="Receptnamn" />
     <button @click="addRecipe()">Lägg till recept</button>
-    <nuxt-link
-      v-for="recipe in recipe"
-      :key="recipe.id"
-      :to="{ name: 'recipe-id', params: { id: recipe.id } }"
-      ><div>{{ recipe.name }}</div></nuxt-link
-    >
+    <div v-for="recipe in recipe" :key="recipe.id">
+      <div class="flex items-center">
+        <nuxt-link :to="{ name: 'recipe-id', params: { id: recipe.id } }">
+          {{ recipe.name }}
+        </nuxt-link>
+        <Recipe-AddToCart />
+      </div>
+    </div>
   </div>
 </template>
 

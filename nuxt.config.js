@@ -4,7 +4,12 @@ export default {
 
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
-
+  proxy: {
+    '/api/': {
+      target: 'https://simonsrecipes.herokuapp.com/add-products/willys',
+      pathRewrite: { '^/api/': '' },
+    },
+  },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'supermarket',
@@ -70,4 +75,7 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+  axios: {
+    proxy: true, // Can be also an object with default options
+  },
 }
