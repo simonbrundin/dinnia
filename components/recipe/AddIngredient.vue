@@ -124,7 +124,10 @@ export default {
     ingredient: {
       query: gql`
         query ($id: String!) {
-          ingredient(where: { added_by: { _eq: $id } }) {
+          ingredient(
+            where: { added_by: { _eq: $id } }
+            order_by: { name: asc }
+          ) {
             name
             id
           }

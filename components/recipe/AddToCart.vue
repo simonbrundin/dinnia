@@ -1,11 +1,8 @@
 <template>
   <div>
-    <img
-      src="@/assets/icons/cart-add.png"
-      alt=""
-      @click="showPortions = true"
-    />
+    <MaterialIconCartPlus @click="showPortions = true" />
     <Modal v-show="showPortions">
+      <button @click="showPortions = false">Stäng</button>
       <h1>Hur många portioner?</h1>
       <input v-model="portions" type="number" name="" />
       <button @click="addToCart">Lägg i kundkorgen</button>
@@ -64,8 +61,14 @@ export default {
               const unitsToBuy = Math.ceil(
                 (this.portions * grams) / gramsPerUnit / units
               )
-
-              this.$store.state.cart[productCode] = unitsToBuy
+              console.log({
+                id: productCode,
+                amount: unitsToBuy,
+              })
+              this.$store.commit('addToCart', {
+                id: productCode,
+                amount: unitsToBuy,
+              })
             }
           }
         })

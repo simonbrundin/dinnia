@@ -1,19 +1,16 @@
 <template>
-  <div v-if="recipe_by_pk">
-    <h1>{{ recipe_by_pk.name }}</h1>
-    <img class="recipe-image" :src="recipe_by_pk.image_url" />
-    <!-- Ingredienser -->
-    <Recipe-IngredientList />
-    <button class="add-ingredient" @click="showAddIngredient = true">
-      Lägg till ingrediens
-    </button>
-    <Recipe-AddIngredient
-      v-if="showAddIngredient"
-      @hideAddIngredient="showAddIngredient = false"
-    />
-    <!-- Steg -->
-    <Recipe-Steps />
-    <button class="remove-button" @click="removeRecipe">Radera recept</button>
+  <div v-if="recipe_by_pk" id="recipe-page" class="flex flex-col">
+    <img class="recipe-image -mb-8" :src="recipe_by_pk.image_url" />
+    <div class="drawer p-4">
+      <h1>{{ recipe_by_pk.name }}</h1>
+      <Recipe-Toggle :tab="tab" @showTab="changeTab" />
+      <!-- Ingredienser -->
+      <Recipe-Ingredients v-show="tab === 'ingredients'" />
+
+      <!-- Steg -->
+      <Recipe-Steps v-show="tab === 'steps'" />
+      <button class="remove-button" @click="removeRecipe">Radera recept</button>
+    </div>
   </div>
 </template>
 
@@ -23,11 +20,14 @@ import gql from 'graphql-tag' // Don't forget to import gql
 export default {
   data() {
     return {
+      tab: 'ingredients',
       id: this.$route.params.id,
-      showAddIngredient: false,
     }
   },
   methods: {
+    changeTab(tab) {
+      this.tab = tab
+    },
     async addIngredient() {
       await this.$apollo.mutate({
         mutation: gql`
@@ -85,8 +85,17 @@ export default {
 </script>
 
 <style scoped>
+#recipe-page {
+  /* margin-top: -50px; */
+}
+.drawer {
+  background-color: white;
+  padding-top: 16px;
+
+  border-radius: 32px;
+}
 .recipe-image {
-  width: 200px;
+  max-width: 100vw;
 }
 .remove-button {
   margin: 40px 0 0 0;

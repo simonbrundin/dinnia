@@ -1,11 +1,13 @@
 <template>
-  <div id="the-navigation">
-    <nuxt-link to="/"> <button>Hem</button></nuxt-link>
-    <button @click="$store.dispatch('addToWillysCart')">
-      Lägg till produkter
-    </button>
+  <div
+    id="the-navigation"
+    class="absolute flex flex-row pt-8 px-8 justify-between items-center w-full"
+  >
+    <div class="p-4 rounded-full back-icon z-50">
+      <MaterialIconChevronLeft @click="$router.back()" />
+    </div>
+
     <CartIcon />
-    <ProfileImage />
   </div>
 </template>
 
@@ -15,6 +17,11 @@ export default {}
 
 <style scoped>
 #the-navigation {
-  background: lightgrey;
+  background: rgba(0, 0, 0, 0);
+  z-index: 90;
+}
+
+.back-icon {
+  background: white;
 }
 </style>

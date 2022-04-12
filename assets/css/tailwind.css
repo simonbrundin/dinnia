@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .card {
+    background-color: theme('colors.white');
+    border-radius: theme('borderRadius.lg');
+    padding: theme('spacing.6');
+    box-shadow: theme('boxShadow.xl');
+  }
+  button {
+    background-color: theme('colors.black');
+    border-radius: theme('borderRadius.lg');
+    padding: theme('spacing.2');
+    box-shadow: theme('boxShadow.xl');
+    color: white;
+  }
+  input {
+    border: 1px solid darkgrey;
+    border-radius: theme('borderRadius.lg');
+  }
+  .fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(25, 25, 25, 0.7);
+    z-index: 100;
+  }
+  /* ... */
+}

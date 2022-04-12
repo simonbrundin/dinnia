@@ -1,3 +1,3 @@
 <template>
-  <p>Signing in...</p>
+  <p>Loggar in...</p>
 </template>

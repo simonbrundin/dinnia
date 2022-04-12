@@ -1,17 +1,47 @@
 <template>
-  <div v-if="ingredients !== []">
-    <h2>Ingredienser</h2>
+  <div v-if="ingredients !== []" class="flex flex-col">
+    <!-- <h2>Ingredienser</h2> -->
+    <!-- Ingredienser -->
     <div
       v-for="ingredient in ingredients"
       :key="ingredient.id"
       :to="{ name: 'ingredient-id', params: { id: ingredient.ingredient.id } }"
+      class="flex flex-row justify-between card my-1 p-4 items-center"
+      @click="editing = ingredient.id"
     >
-      {{ ingredient.ingredient.name }}
-      <button @click="editGrams(ingredient.id, ingredient.gram)">
-        {{ ingredient.grams }} g
-      </button>
-      <button @click="deleteIngredient(ingredient.id)">x</button><br />
+      <div class="flex flex-row items-center">
+        <img
+          v-if="ingredient.ingredient.store_ingredients.length > 0"
+          :src="ingredient.ingredient.store_ingredients[0].image_url"
+          alt=""
+          class="w-8"
+        />
+        <div
+          :class="{
+            'incomplete-store-info':
+              ingredient.ingredient.store_ingredients.length === 0 ||
+              ingredient.ingredient.store_ingredients[0].product_code ===
+                undefined,
+          }"
+        >
+          {{ ingredient.ingredient.name }}
+        </div>
+      </div>
+      <div>{{ ingredient.grams }} g</div>
     </div>
+    <!-- Ändra -->
+    <EditIngredient
+      v-if="editing !== 0"
+      :editing="editing"
+      @close="editing = 0"
+    />
+    <button class="add-ingredient" @click="showAddIngredient = true">
+      Lägg till ingrediens
+    </button>
+    <Recipe-AddIngredient
+      v-if="showAddIngredient"
+      @hideAddIngredient="showAddIngredient = false"
+    />
   </div>
 </template>
 
@@ -20,9 +50,11 @@ import gql from 'graphql-tag' // Don't forget to import gql
 export default {
   data() {
     return {
+      editing: 0,
       title: '',
       id: this.$route.params.id,
       ingredients: [],
+      showAddIngredient: false,
     }
   },
   mounted() {
@@ -38,6 +70,15 @@ export default {
                 ingredient {
                   name
                   id
+                  store_ingredients {
+                    grams_per_unit
+                    product_code
+                    unit_name
+                    units
+                    url
+                    store_id
+                    image_url
+                  }
                 }
                 grams
                 id
@@ -79,24 +120,7 @@ export default {
       })
       location.reload()
     },
-    async deleteIngredient(id) {
-      // console.log('radering inledd')
-      await this.$apollo.mutate({
-        mutation: gql`
-          mutation ($id: Int!) {
-            delete_recipe_ingredient(where: { id: { _eq: $id } }) {
-              returning {
-                id
-              }
-            }
-          }
-        `,
-        variables: {
-          id,
-        },
-      })
-      location.reload()
-    },
+
     async addIngredient() {
       await this.$apollo.mutate({
         mutation: gql`
@@ -140,4 +164,8 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.incomplete-store-info {
+  color: red;
+}
+</style>

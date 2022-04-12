@@ -11,10 +11,30 @@ export const actions = {
       const row = [product, this.state.cart[product]]
       data.push(row)
     }
-    await console.log(data)
 
     const isAdded = await this.$axios.$post('/api/', data)
 
     console.log(isAdded)
+  },
+}
+
+export const mutations = {
+  addToCart(state, { id, amount }) {
+    // Using the spread operator
+
+    if (state.cart[id]) {
+      state.cart[id] += amount
+    } else {
+      state.cart = {
+        ...state.cart,
+        [id]: amount,
+      }
+    }
+  },
+}
+
+export const getters = {
+  getCart(state) {
+    return state.cart
   },
 }
