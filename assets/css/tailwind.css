@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  h1 {
+    font-size: theme('fontSize.2xl');
+  }
+}
+
 @layer components {
   .card {
     background-color: theme('colors.white');
@@ -20,7 +26,7 @@
     border: 1px solid darkgrey;
     border-radius: theme('borderRadius.lg');
   }
-  .fullscreen {
+  /* .fullscreen {
     position: fixed;
     top: 0;
     left: 0;
@@ -28,6 +34,6 @@
     height: 100vh;
     background-color: rgba(25, 25, 25, 0.7);
     z-index: 100;
-  }
+  } */
   /* ... */
 }
