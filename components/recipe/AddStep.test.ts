@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { data } from './AddStep'
+// import { data } from './AddStep'
 
 describe('add', () => {
   const add = (a: number, b: number) => a + b
