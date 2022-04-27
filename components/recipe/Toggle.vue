@@ -1,5 +1,5 @@
 <template>
-  <div class="toggle-background flex flex-row justify-center">
+  <div class="toggle-background flex flex-row justify-center m-auto">
     <div
       :class="{ active: tab === 'ingredients' }"
       class="rounded-full"

@@ -1,13 +1,16 @@
 <template>
   <div>
-    <h2>Steg</h2>
     <draggable
       v-if="orderedSteps !== []"
       v-model="orderedSteps"
       @start="start"
       @end="end"
     >
-      <div v-for="(step, index) in orderedSteps" :key="step.id" class="step">
+      <div
+        v-for="(step, index) in orderedSteps"
+        :key="step.id"
+        class="step flex flex-row justify-between"
+      >
         {{ step.description }}<button @click="removeStep(index)">x</button>
       </div>
     </draggable>

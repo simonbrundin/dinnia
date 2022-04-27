@@ -1,18 +1,36 @@
 <template>
-  <Modal>
-    <button @click="$emit('hideAddIngredient')">Stäng</button>
-    <h2>Välj ingrediens</h2>
-    <div
-      v-for="ingredient in ingredient"
-      :key="ingredient.id"
-      @click="chooseGrams(ingredient.id)"
-    >
-      <button>
-        {{ ingredient.name }}
-      </button>
+  <Modal @close="$emit('hideAddIngredient')">
+    <!-- Välj butik -->
+    <div v-if="step === 3" class="choose-store">
+      <div>
+        <img
+          src="https://d2rfo6yapuixuu.cloudfront.net/he9/h4c/8878098546718/willys_logo.svg"
+        />
+      </div>
     </div>
-    <input v-model="title" type="text" placeholder="Lägg till ny ingrediens" />
-    <button @click="chooseGrams()">Lägg till ingrediens</button>
+    <!-- Välj ingrediens -->
+    <h1 class="text-center">Ingrediens</h1>
+    <div class="choose-ingredient">
+      <div class="flex flex-row m-4 gap-2">
+        <input
+          v-model="title"
+          type="text"
+          placeholder="Lägg till ny ingrediens"
+        />
+        <button @click="chooseGrams()">Lägg till ingrediens</button>
+      </div>
+      <div class="grid grid-cols-2">
+        <div
+          v-for="ingredient in ingredient"
+          :key="ingredient.id"
+          class="card m-2"
+          @click="chooseGrams(ingredient.id)"
+        >
+          {{ ingredient.name }}
+        </div>
+      </div>
+    </div>
+
     <Recipe-ChooseGrams
       v-show="showChooseGrams"
       @hideChooseGrams="showChooseGrams = false"
@@ -23,6 +41,7 @@
       @hideChooseSection="showChooseSection = false"
       @updateSection="updateSection"
     />
+    <button @click="$emit('hideAddIngredient')">Stäng</button>
   </Modal>
 </template>
 
@@ -31,6 +50,7 @@ import gql from 'graphql-tag' // Don't forget to import gql
 export default {
   data() {
     return {
+      step: 1,
       showChooseGrams: false,
       showChooseSection: false,
       title: '',
@@ -39,7 +59,6 @@ export default {
       sectionId: 0,
     }
   },
-
   methods: {
     updateSection(id) {
       this.sectionId = id
@@ -55,6 +74,12 @@ export default {
     async addIngredient() {
       // ------ Välja gram
       // ------ Välja avdelning
+      const name = () => {
+        if (this.title === '') {
+          return null
+        }
+        return this.title
+      }
       // Skicka graphqlfråga för att lägga till ingrediens till användarens ingredienser
       await this.$apollo
         .mutate({
@@ -78,7 +103,7 @@ export default {
             }
           `,
           variables: {
-            name: this.title,
+            name,
             store_section_id: this.sectionId,
             added_by: this.$auth.user.sub,
           },
