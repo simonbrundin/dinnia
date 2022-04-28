@@ -27,7 +27,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .cart-icon {
   background: white;
 }

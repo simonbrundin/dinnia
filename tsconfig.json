@@ -1,14 +1,4 @@
 {
-  "compilerOptions": {
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "target": "ES2020",
-    "jsx": "preserve",
-    "strictFunctionTypes": true
-  },
-  "exclude": ["node_modules", "**/node_modules/*"]
-}
-{
   // https://v3.nuxtjs.org/concepts/typescript
   "extends": "./.nuxt/tsconfig.json"
 }

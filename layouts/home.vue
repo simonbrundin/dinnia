@@ -13,4 +13,4 @@ import ProfileImage from '../components/ProfileImage.vue'
 export default { components: { ProfileImage } }
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped></style>
