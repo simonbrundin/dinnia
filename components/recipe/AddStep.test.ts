@@ -17,6 +17,16 @@ describe('add', () => {
   })
 })
 
+const remainder = (a: number, b: number) => {
+  return a % b
+}
+
+describe('remainder', () => {
+  it('positiva tal', () => {
+    expect(remainder(7, 3)).toEqual(1)
+  })
+})
+
 // describe('AddStep', () => {
 //   it('should add two numbers', () => {
 //     expect(data).toBeDefined()

@@ -8,3 +8,7 @@
   },
   "exclude": ["node_modules", "**/node_modules/*"]
 }
+{
+  // https://v3.nuxtjs.org/concepts/typescript
+  "extends": "./.nuxt/tsconfig.json"
+}
