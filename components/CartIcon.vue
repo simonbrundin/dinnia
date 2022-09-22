@@ -12,19 +12,18 @@
   </div>
 </template>
 
-<script>
-export default {
-  computed: {
-    itemsInCart() {
-      let total = 0
-      const cart = this.$store.getters.getCart
-      for (const value of Object.values(cart)) {
-        total += value
-      }
-      return total
-    },
-  },
-}
+<script setup>
+import { useStore } from '~/stores/global'
+import { computed } from 'vue'
+const itemsInCart = computed(() => {
+  let total = 0
+  const store = useStore()
+  const cart = store.cart
+  for (const value of Object.values(cart)) {
+    total += value
+  }
+  return total
+})
 </script>
 
 <style scoped>

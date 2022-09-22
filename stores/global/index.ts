@@ -16,7 +16,7 @@ export const useStore = defineStore('store', {
   }),
   getters: {},
   actions: {
-    async addToWillysCart() {
+    async addToWillysCart(state) {
       const data = []
       for (const product in state.cart) {
         const row = [product, state.cart[product]]

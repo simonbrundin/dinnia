@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div v-if="!$auth.loggedIn">Loggar in...</div>
-    <Recipes />
+    <!-- <div v-if="!$auth.loggedIn">Loggar in...</div> -->
+    <!-- <Recipes /> -->
   </div>
 </template>
 
@@ -9,10 +9,10 @@
 export default {
   name: 'IndexPage',
   layout: 'home',
-  mounted() {
-    if (!this.$auth.loggedIn) {
-      this.$auth.loginWith('auth0')
-    }
-  },
+  // mounted() {
+  //   if (!this.$auth.loggedIn) {
+  //     this.$auth.loginWith('auth0')
+  //   }
+  // },
 }
 </script>

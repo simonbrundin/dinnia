@@ -1,7 +1,7 @@
 <template>
   <div class="default-layout">
     <TheNavigation />
-    <Nuxt />
+    <!-- <slot /> -->
   </div>
 </template>
 <style>

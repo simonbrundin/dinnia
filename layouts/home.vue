@@ -4,7 +4,7 @@
       <ProfileImage />
       <CartIcon />
     </div>
-    <Nuxt />
+    <slot />
   </div>
 </template>
 
