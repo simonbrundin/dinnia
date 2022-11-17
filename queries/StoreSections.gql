@@ -1,0 +1,6 @@
+query StoreSections {
+  store_section {
+    name
+    id
+  }
+}

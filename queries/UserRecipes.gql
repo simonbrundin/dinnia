@@ -1,0 +1,10 @@
+query UserRecipes {
+  recipe {
+    name
+    image_url
+    id
+    cart_recipes {
+      portions
+    }
+  }
+}

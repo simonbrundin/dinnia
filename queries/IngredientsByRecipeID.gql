@@ -1,0 +1,19 @@
+query IngredientsByRecipeID($id: Int!) {
+  recipe_ingredient(where: { recipe_id: { _eq: $id } }) {
+    ingredient {
+      name
+      id
+      store_ingredients {
+        grams_per_unit
+        product_code
+        unit_name
+        units
+        url
+        store_id
+        image_url
+      }
+    }
+    grams
+    id
+  }
+}

@@ -1,18 +1,11 @@
 <template>
-  <div>
-    <!-- <div v-if="!$auth.loggedIn">Loggar in...</div> -->
-    <!-- <Recipes /> -->
-  </div>
+  <div id="index"><Recipes /></div>
+
+  <!-- <div v-if="!$auth.loggedIn">Loggar in...</div> -->
 </template>
 
-<script>
-export default {
-  name: 'IndexPage',
+<script setup lang="ts">
+definePageMeta({
   layout: 'home',
-  // mounted() {
-  //   if (!this.$auth.loggedIn) {
-  //     this.$auth.loginWith('auth0')
-  //   }
-  // },
-}
+})
 </script>

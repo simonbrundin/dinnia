@@ -25,7 +25,6 @@
 </template>
 
 <script>
-import gql from 'graphql-tag' // Don't forget to import gql
 import draggable from 'vuedraggable'
 
 export default {

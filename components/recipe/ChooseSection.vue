@@ -12,35 +12,19 @@
   </Modal>
 </template>
 
-<script>
-import gql from 'graphql-tag' // Don't forget to import gql
+<script setup lang="ts">
+const emit = defineEmits(['hideChooseSection', 'updateGrams'])
+const grams = useState('grams', () => 0)
 
-export default {
-  data() {
-    return {
-      grams: 0,
-    }
-  },
-  methods: {
-    // TODO Graphqlfråga som hämtar alla sektioner
-    updateGrams() {
-      this.$emit('hideChooseSection')
-      this.$emit('updateGrams', this.grams)
-    },
-  },
-  apollo: {
-    store_section: {
-      query: gql`
-        query {
-          store_section {
-            name
-            id
-          }
-        }
-      `,
-    },
-  },
+// TODO Graphqlfråga som hämtar alla sektioner
+const updateGrams = () => {
+  emit('hideChooseSection')
+  emit('updateGrams', grams)
 }
+const { data } = await useAsyncGql({
+  operation: 'StoreSections',
+})
+const store_section = data.store_section
 </script>
 
 <style scoped></style>

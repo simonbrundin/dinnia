@@ -53,8 +53,6 @@
 </template>
 
 <script>
-import gql from "graphql-tag"; // Don't forget to import gql
-
 export default {
   props: {
     editing: { type: Number, default: 0 },
@@ -67,17 +65,17 @@ export default {
 
       newGrams: this.grams,
       ingredient: [],
-    };
+    }
   },
   mounted() {
-    this.getIngredient();
+    this.getIngredient()
   },
   methods: {
     async deleteIngredient(id) {
       // console.log('radering inledd')
       await this.$apollo.mutate({
         mutation: gql`
-          mutation($id: Int!) {
+          mutation ($id: Int!) {
             delete_recipe_ingredient(where: { id: { _eq: $id } }) {
               returning {
                 id
@@ -88,14 +86,14 @@ export default {
         variables: {
           id,
         },
-      });
-      location.reload();
+      })
+      location.reload()
     },
     async getIngredient() {
       await this.$apollo
         .query({
           query: gql`
-            query($ingredientId: Int!) {
+            query ($ingredientId: Int!) {
               recipe_ingredient(where: { id: { _eq: $ingredientId } }) {
                 grams
                 id
@@ -123,16 +121,16 @@ export default {
           },
         })
         .then((data) => {
-          const ingredient = data.data.recipe_ingredient;
+          const ingredient = data.data.recipe_ingredient
           if (ingredient === []) {
-            return;
+            return
           }
 
-          this.ingredient.push(ingredient[0]);
-        });
+          this.ingredient.push(ingredient[0])
+        })
     },
   },
-};
+}
 </script>
 
 <style scoped></style>

@@ -1,0 +1,9 @@
+query RecipeByID($id: Int!) {
+  recipe_by_pk(id: $id) {
+    added_by
+    date_created
+    id
+    name
+    image_url
+  }
+}

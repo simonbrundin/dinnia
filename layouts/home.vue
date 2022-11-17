@@ -8,9 +8,6 @@
   </div>
 </template>
 
-<script>
-import ProfileImage from '../components/ProfileImage.vue'
-export default { components: { ProfileImage } }
-</script>
+<script setup lang="ts"></script>
 
 <style scoped></style>

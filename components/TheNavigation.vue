@@ -6,7 +6,6 @@
     <div class="p-4 rounded-full back-icon z-50">
       <MaterialIconChevronLeft @click="$router.back()" />
     </div>
-
     <CartIcon />
   </div>
 </template>

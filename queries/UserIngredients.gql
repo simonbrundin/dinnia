@@ -1,0 +1,6 @@
+query UserIngredients($id: String!) {
+  ingredient(where: { added_by: { _eq: $id } }, order_by: { name: asc }) {
+    name
+    id
+  }
+}

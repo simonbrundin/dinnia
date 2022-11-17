@@ -1,0 +1,6 @@
+mutation AddRecipe($added_by: String!, $name: String!) {
+  insert_recipe_one(object: { added_by: $added_by, name: $name }) {
+    id
+    name
+  }
+}

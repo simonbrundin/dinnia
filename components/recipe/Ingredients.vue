@@ -45,123 +45,84 @@
   </div>
 </template>
 
-<script>
-import gql from 'graphql-tag' // Don't forget to import gql
-export default {
-  data() {
-    return {
-      editing: 0,
-      title: '',
-      id: this.$route.params.id,
-      ingredients: [],
-      showAddIngredient: false,
-    }
-  },
-  mounted() {
-    this.getIngredients()
-  },
-  methods: {
-    async getIngredients() {
-      await this.$apollo
-        .query({
-          query: gql`
-            query ($id: Int!) {
-              recipe_ingredient(where: { recipe_id: { _eq: $id } }) {
-                ingredient {
-                  name
-                  id
-                  store_ingredients {
-                    grams_per_unit
-                    product_code
-                    unit_name
-                    units
-                    url
-                    store_id
-                    image_url
-                  }
-                }
-                grams
-                id
-              }
-            }
-          `,
-          variables: {
-            id: this.$data.id,
-          },
-        })
-        .then((data) => {
-          const steps = data.data.recipe_ingredient
-          if (steps === []) {
-            return
-          }
+<script setup lang="ts">
+import { thisExpression } from '@babel/types'
 
-          this.ingredients = steps
-        })
-    },
-    async editGrams(id, gram) {
-      const grams = prompt('Hur många gram?', gram)
-      await this.$apollo.mutate({
-        mutation: gql`
-          mutation ($id: Int!, $grams: Int!) {
-            update_recipe_ingredient(
-              where: { id: { _eq: $id } }
-              _set: { grams: $grams }
-            ) {
-              returning {
-                id
-              }
-            }
-          }
-        `,
-        variables: {
-          id,
-          grams,
-        },
-      })
-      location.reload()
-    },
+const route = useRoute()
+const editing = useState('editing', () => 0)
+const title = useState('title', () => '')
+const recipeID = parseInt(route.params.id.toString())
+const showAddIngredient = useState('editshowAddIngredienting', () => false)
 
-    async addIngredient() {
-      await this.$apollo.mutate({
-        mutation: gql`
-          mutation ($added_by: String!, $name: String!) {
-            insert_recipe_one(object: { added_by: $added_by, name: $name }) {
-              id
-              name
-            }
-          }
-        `,
-        variables: {
-          added_by: this.$auth.user.sub,
-          name: this.title,
-        },
-      })
-      location.reload()
-    },
-  },
+const { data: IngredientsByRecipeID } = await useAsyncGql({
+  operation: 'IngredientsByRecipeID',
+  variables: { id: recipeID },
+})
+const ingredients = IngredientsByRecipeID.value.recipe_ingredient
+//   async editGrams(id, gram) {
+//     const grams = prompt('Hur många gram?', gram)
+//     await this.$apollo.mutate({
+//       mutation: gql`
+//         mutation ($id: Int!, $grams: Int!) {
+//           update_recipe_ingredient(
+//             where: { id: { _eq: $id } }
+//             _set: { grams: $grams }
+//           ) {
+//             returning {
+//               id
+//             }
+//           }
+//         }
+//       `,
+//       variables: {
+//         id,
+//         grams,
+//       },
+//     })
+//     location.reload()
+//   },
 
-  // apollo: {
-  //   recipe_ingredient: {
-  //     query: gql`
-  //       query ($id: Int!) {
-  //         recipe_ingredient(where: { recipe_id: { _eq: $id } }) {
-  //           ingredient {
-  //             name
-  //             id
-  //           }
-  //           grams
-  //           id
-  //         }
-  //       }
-  //     `,
-  //     variables() {
-  //       return {
-  //         id: this.$data.id,
-  //       }
-  //     },
-  //   },
-  // },
-}
+//   async addIngredient() {
+//     await this.$apollo.mutate({
+//       mutation: gql`
+//         mutation ($added_by: String!, $name: String!) {
+//           insert_recipe_one(object: { added_by: $added_by, name: $name }) {
+//             id
+//             name
+//           }
+//         }
+//       `,
+//       variables: {
+//         added_by: this.$auth.user.sub,
+//         name: this.title,
+//       },
+//     })
+//     location.reload()
+//   },
+// },
+
+// apollo: {
+//   recipe_ingredient: {
+//     query: gql`
+//       query ($id: Int!) {
+//         recipe_ingredient(where: { recipe_id: { _eq: $id } }) {
+//           ingredient {
+//             name
+//             id
+//           }
+//           grams
+//           id
+//         }
+//       }
+//     `,
+//     variables() {
+//       return {
+//         id: this.$data.id,
+//       }
+//     },
+//
+
+// },
 </script>
 
 <style scoped>

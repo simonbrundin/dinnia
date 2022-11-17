@@ -1,7 +1,7 @@
 <template>
   <div class="default-layout">
     <TheNavigation />
-    <!-- <slot /> -->
+    <slot />
   </div>
 </template>
 <style>
