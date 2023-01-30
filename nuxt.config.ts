@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   css: ['~/assets/css/tailwind.css'],
   modules: [
-    'nuxt-graphql-client',
+    // 'nuxt-graphql-client',
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
     'nuxt-icons',
