@@ -1,0 +1,15 @@
+name: Commit Stage
+on: [push]
+jobs:
+  Commit:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Använd Node.js
+      uses: actions/setup-node@v3
+    - name: NPM Install
+      run: npm i
+    - name: Skapa en Release Candidate
+      run: npm run build
+    - name: Kör tester  
+      run: npm test
