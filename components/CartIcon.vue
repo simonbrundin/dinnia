@@ -1,7 +1,12 @@
 <template>
   <div class="flex flex-row z-50">
-    <nuxt-link to="/cart" class="flex flex-row cart-icon p-4 rounded-full">
-      <MaterialIconCartOutline />
+    <nuxt-link
+      to="/cart"
+      class="flex flex-row cart-icon p-4 rounded-full drop-shadow-md"
+    >
+      <!-- <nuxt-icon name="ChevronUp" /> -->
+
+      <!-- <MaterialIconCartOutline /> -->
       <div class=""></div>
       <div
         class="badge flex justify-center items-center px-2 py-0 rounded-full"
@@ -31,10 +36,7 @@ const itemsInCart = computed(() => {
   background: white;
 }
 .badge {
-  margin: -16px 0 0 20px;
   background: red;
   color: white;
-
-  position: absolute;
 }
 </style>

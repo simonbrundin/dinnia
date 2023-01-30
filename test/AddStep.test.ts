@@ -26,6 +26,14 @@ describe('remainder', () => {
     expect(remainder(7, 3)).toEqual(1)
   })
 })
+describe('okej', () => {
+  it('positiva tal', () => {
+    expect(remainder(7, 3)).toEqual(1)
+  })
+  it('lek', () => {
+    expect(remainder(10, 3)).toEqual(1)
+  })
+})
 
 // describe('AddStep', () => {
 //   it('should add two numbers', () => {

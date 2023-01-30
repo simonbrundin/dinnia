@@ -5,6 +5,7 @@
   >
     <div class="p-4 rounded-full back-icon z-50">
       <MaterialIconChevronLeft @click="$router.back()" />
+      <div @click="$router.back()">Tillbaka</div>
     </div>
     <CartIcon />
   </div>

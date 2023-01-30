@@ -27,6 +27,9 @@ defineProps(['recipe'])
 </script>
 
 <style scoped>
+.card {
+  /* background: hsl(131, 100%, 95%); */
+}
 .cart-button {
   margin: -1.5rem;
   /* border-left: 1px solid black; */

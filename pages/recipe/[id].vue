@@ -1,6 +1,7 @@
 <template>
   <div v-if="recipe_by_pk" id="recipe-page" class="flex flex-col">
-    <img class="recipe-image -mb-8" :src="recipe_by_pk.image_url" />
+    <img class="recipe-image h-80" :src="recipe_by_pk.image_url" />
+
     <div class="drawer p-4">
       <h1 class="text-center">{{ recipe_by_pk.name }}</h1>
       <Recipe-Toggle :tab="tab" @showTab="changeTab" />

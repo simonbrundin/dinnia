@@ -1,8 +1,21 @@
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-  buildModules: ['~/modules/material-design-icons.js', '@pinia/nuxt'],
   css: ['~/assets/css/tailwind.css'],
-  modules: ['nuxt-graphql-client', '@nuxtjs/tailwindcss'],
+  modules: [
+    'nuxt-graphql-client',
+    '@nuxtjs/tailwindcss',
+    '@pinia/nuxt',
+    'nuxt-icons',
+    '@nuxtjs/apollo',
+  ],
+  apollo: {
+    clients: {
+      default: {
+        httpEndpoint: 'https://matkasse.hasura.app/v1/graphql',
+        tokenName: 'x-hasura-admin-secret',
+      },
+    },
+  },
   runtimeConfig: {
     public: {
       'graphql-client': {
@@ -15,13 +28,13 @@ export default defineNuxtConfig({
             },
             retainToken: true,
           },
-          willys: {
-            host: 'https://countries.trevorblades.com/graphql', // process.env.GQL_COUNTRIES_HOST
-            token: {
-              name: 'X-Custom-Auth', // process.env.GQL_COUNTRIES_TOKEN_NAME
-              value: 'your_access_token', // process.env.GQL_COUNTRIES_TOKEN
-            },
-          },
+          // willys: {
+          //   host: 'https://countries.trevorblades.com/graphql', // process.env.GQL_COUNTRIES_HOST
+          //   token: {
+          //     name: 'X-Custom-Auth', // process.env.GQL_COUNTRIES_TOKEN_NAME
+          //     value: 'your_access_token', // process.env.GQL_COUNTRIES_TOKEN
+          //   },
+          // },
         },
       },
     },
