@@ -28,7 +28,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Generera filer till GitHub Pages
-        uses: fixa detta
+        run: pnpm test
   acceptance:
     name: Acceptance Stage
     needs: create_rc
