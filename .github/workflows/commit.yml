@@ -10,6 +10,6 @@ jobs:
     - name: NPM Install
       run: npm i
     - name: Skapa en Release Candidate
-      run: npm run build
+      run: npm run generate
     - name: Kör tester  
       run: npm test
