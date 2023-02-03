@@ -6,7 +6,7 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "test": "cucumber-js"
+    "test": "cucumber-js --publish-quiet"
   },
   "devDependencies": {
     "@cucumber/cucumber": "^8.10.0",
