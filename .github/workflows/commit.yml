@@ -4,7 +4,8 @@ jobs:
   Commit:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout branch
+      uses: actions/checkout@v3
     - name: Använd Node.js
       uses: actions/setup-node@v3
     - name: NPM Install
