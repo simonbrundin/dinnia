@@ -1,8 +1,8 @@
 name: Delivery Pipeline
 on: [push]
 jobs:
-  build:
-    name: Commit Stage - Build
+  commit:
+    name: Commit Stage
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -19,19 +19,11 @@ jobs:
         run: pnpm generate
       - name: Kör tester
         run: pnpm test
-  create_rc:
-    name: Commit Stage - Skapa Release Candidate
-    needs: build
-    if: success()
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Generera filer till GitHub Pages
-        run: pnpm test
+      - name: Skapa Release Candidate
+        run: pnpm hello
   acceptance:
     name: Acceptance Stage
-    needs: create_rc
+    needs: commit
     if: success()
     runs-on: ubuntu-latest
     steps:
