@@ -3,8 +3,7 @@ name: Acceptance Stage
 on:
   workflow_run:
     workflows: ["Commit Stage"]
-    types:
-      - completed
+    types: [completed]
 
 jobs:
   build:
