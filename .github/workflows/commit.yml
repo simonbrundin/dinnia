@@ -28,4 +28,4 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Start Acceptance Stage
-        uses: simonbrundin/dinnia/.github/workflows/commit.yml@v1
+        uses: simonbrundin/dinnia/.github/workflows/commit.yml@main
