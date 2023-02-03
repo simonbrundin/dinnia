@@ -9,12 +9,12 @@ jobs:
       uses: actions/checkout@v3
     - name: Setup Node.js
       uses: actions/setup-node@v3
-    - name: NPM Install
-      run: npm i
+    - name: PNPM Install
+      run: pnpm install
     - name: Kompilera utan varningar
-      run: npm run generate
+      run: pnpm generate
     - name: Kör tester  
-      run: npm test
+      run: pnpm test
   create_rc:
     name: Skapa Release Candidate
     needs: build
