@@ -29,3 +29,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+  Production:
+    name: Production Stage
+    needs: acceptance
+    if: success()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
