@@ -5,27 +5,27 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-    - name: Setup Node.js och PNPM
-      uses: actions/setup-node@v3
-    - name: Installera PNPM
-      uses: pnpm/action-setup@v2
-      with:
-        version: 7
-    - name: PNPM Install
-      run: pnpm install
-    - name: Kompilera utan varningar
-      run: pnpm generate
-    - name: Kör tester  
-      run: pnpm test
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Setup Node.js och PNPM
+        uses: actions/setup-node@v3
+      - name: Installera PNPM
+        uses: pnpm/action-setup@v2
+        with:
+          version: 7
+      - name: PNPM Install
+        run: pnpm install
+      - name: Kompilera utan varningar
+        run: pnpm generate
+      - name: Kör tester
+        run: pnpm test
   create_rc:
     name: Skapa Release Candidate
     needs: build
     if: success()
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-      
-    
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Start Acceptance Stage
+        uses: simonbrundin/dinnia/.github/workflows/commit.yml@v1
