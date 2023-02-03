@@ -1,18 +1,27 @@
 name: Commit Stage
 on: [push]
 jobs:
-  Commit:
+  build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout branch
+    - name: Checkout code
       uses: actions/checkout@v3
-    - name: Använd Node.js
+    - name: Setup Node.js
       uses: actions/setup-node@v3
     - name: NPM Install
       run: npm i
     - name: Kompilera utan varningar
-      run: npm run build
-    - name: Skapa en Release Candidate
       run: npm run generate
     - name: Kör tester  
       run: npm test
+  create_rc:
+    name: Skapa Release Candidate
+    needs: build
+    if: success()
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      
+    
