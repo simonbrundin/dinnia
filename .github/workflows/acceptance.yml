@@ -1,13 +1,10 @@
 name: Acceptance Stage
 
-on:
-  workflow_run:
-    workflows: [Commit Stage]
-    types: [completed]
+on: workflow_call
 
 jobs:
   build:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    name: "Build app"
     runs-on: ubuntu-latest
     # services:
     #   bookstore:
