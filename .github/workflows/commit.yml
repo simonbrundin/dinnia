@@ -27,5 +27,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      # - name: Start Acceptance Stage
-      #   uses: simonbrundin/dinnia/.github/workflows/commit.yml@main
+  start_acceptance:
+    name: Start Acceptance Stage
+    uses: ./.github/workflows/acceptance.yml
