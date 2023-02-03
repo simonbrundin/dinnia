@@ -9,6 +9,8 @@ jobs:
       uses: actions/setup-node@v3
     - name: NPM Install
       run: npm i
+    - name: Kompilera utan varningar
+      run: npm run dev
     - name: Skapa en Release Candidate
       run: npm run generate
     - name: Kör tester  
