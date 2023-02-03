@@ -2,19 +2,18 @@ name: Acceptance Stage
 
 on:
   workflow_run:
-    workflows: ["Commit Stage"]
+    workflows: [Commit Stage]
     types: [completed]
 
 jobs:
   build:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
-
     # services:
     #   bookstore:
     #     image: 'davef77/davesbookstore:1.0'
     #     ports:
     #       - 5000:5000
-
     steps:
       - name: Checkout
         uses: actions/checkout@v1.2.0
