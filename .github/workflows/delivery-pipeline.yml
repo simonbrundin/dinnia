@@ -1,8 +1,8 @@
-name: Commit Stage
+name: Delivery Pipeline
 on: [push]
 jobs:
   build:
-    name: Build
+    name: Commit Stage - Build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -20,7 +20,7 @@ jobs:
       - name: Kör tester
         run: pnpm test
   create_rc:
-    name: Skapa Release Candidate
+    name: Commit Stage - Skapa Release Candidate
     needs: build
     if: success()
     runs-on: ubuntu-latest
@@ -28,5 +28,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
   start_acceptance:
-    name: Start Acceptance Stage
-    uses: ./.github/workflows/acceptance.yml
+    name: Acceptance Stage
+    needs: create_rc
+    if: success()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
