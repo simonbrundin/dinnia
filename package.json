@@ -6,11 +6,16 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "test": "cucumber-js --publish-quiet"
+    "test": "cucumber-js --publish-quiet",
+    "storybook": "storybook dev -p 6006"
   },
   "devDependencies": {
     "@cucumber/cucumber": "^8.10.0",
+    "@storybook/vue3-vite": "^7.0.0-beta.45",
     "nuxt": "^3.1.1",
+    "storybook": "^7.0.0-beta.45",
+    "vite-plugin-eslint": "^1.8.1",
     "vitest": "^0.28.4"
-  }
+  },
+  "packageManager": "^pnpm@7.26.3"
 }
