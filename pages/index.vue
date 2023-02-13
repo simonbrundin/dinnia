@@ -1,7 +1,3 @@
 <template></template>
 
-<script setup lang="ts">
-definePageMeta({
-  layout: "home",
-});
-</script>
+<script setup lang="ts"></script>
