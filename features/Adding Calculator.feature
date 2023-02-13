@@ -1,7 +1,8 @@
-Feature: Plusräknare
-  En miniräknare som bara kan plus
+Feature: Receptvy
+  Sammanfattning av ett recept med möjlighet att redigera
 
-  Scenario: Två tal summeras
-    Given två tal
-    When summerar dem
-    Then blir svaret summan
+  Scenario: Recept syns
+    Given det finns ett recept
+    When tittar på det
+    Then ser jag information om receptet
+    
