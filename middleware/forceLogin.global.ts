@@ -1,10 +1,7 @@
-export default defineNuxtRouteMiddleware((to, from) => {
-  if (to.path === "/login") {
-    return;
-  }
-  const isAuthenticated = nhost.auth.isAuthenticated();
-
-  if (!isAuthenticated) {
+export default defineNuxtRouteMiddleware(async (to, from) => {
+  const isLoggedIn = await nhost.auth.isAuthenticatedAsync();
+  if (!isLoggedIn && to.fullPath !== "/login") {
     return navigateTo("/login");
   }
+  navigateTo("/");
 });

@@ -1,18 +1,17 @@
 <template>
-  <div>
-    <input
-      type="email"
-      name="email"
-      v-model="email"
-      @keyup.enter="signUp(email)"
-    />
-    <button @click="signUp(email)">Fortsätt</button>
-    <div>{{}}</div>
+  <div class="flex items-center justify-center h-screen">
+    <LoginForm />
   </div>
 </template>
 
 <script setup lang="ts">
-const email = ref();
+// const redirectIfLoggedIn = async () => {
+//   const alreadyLoggedIn = () => nhost.auth.isAuthenticatedAsync();
+//   if (await alreadyLoggedIn()) {
+//     navigateTo("/");
+//   }
+// };
+// redirectIfLoggedIn();
 </script>
 
 <style scoped></style>
