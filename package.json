@@ -11,12 +11,15 @@
   },
   "devDependencies": {
     "@cucumber/cucumber": "^8.10.0",
-    "@nuxtjs/supabase": "^0.3.1",
     "@storybook/vue3-vite": "^7.0.0-beta.45",
     "nuxt": "^3.1.1",
     "storybook": "^7.0.0-beta.45",
     "vite-plugin-eslint": "^1.8.1",
     "vitest": "^0.28.4"
   },
-  "packageManager": "^pnpm@7.26.3"
+  "packageManager": "^pnpm@7.26.3",
+  "dependencies": {
+    "@nhost/nhost-js": "^1.13.2",
+    "graphql": "^16.6.0"
+  }
 }
