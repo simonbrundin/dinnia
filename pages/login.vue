@@ -5,13 +5,13 @@
 </template>
 
 <script setup lang="ts">
-// const redirectIfLoggedIn = async () => {
-//   const alreadyLoggedIn = () => nhost.auth.isAuthenticatedAsync();
-//   if (await alreadyLoggedIn()) {
-//     navigateTo("/");
-//   }
-// };
-// redirectIfLoggedIn();
+const redirectIfLoggedIn = async () => {
+  const alreadyLoggedIn = () => nhost.auth.isAuthenticatedAsync();
+  if (await alreadyLoggedIn()) {
+    navigateTo("/");
+  }
+};
+redirectIfLoggedIn();
 </script>
 
 <style scoped></style>

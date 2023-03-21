@@ -1,4 +1,5 @@
 {
+  "packageManager": "^pnpm@7.26.3",
   "private": true,
   "scripts": {
     "build": "nuxt build",
@@ -9,19 +10,21 @@
     "test": "cucumber-js --publish-quiet",
     "storybook": "storybook dev -p 6006"
   },
-  "devDependencies": {
-    "@cucumber/cucumber": "^8.10.0",
-    "@nuxtjs/tailwindcss": "^6.4.0",
-    "@storybook/vue3-vite": "^7.0.0-beta.45",
-    "nuxt": "^3.1.1",
-    "sass": "^1.58.1",
-    "storybook": "^7.0.0-beta.45",
-    "vite-plugin-eslint": "^1.8.1",
-    "vitest": "^0.28.4"
-  },
-  "packageManager": "^pnpm@7.26.3",
   "dependencies": {
-    "@nhost/nhost-js": "^1.13.2",
-    "graphql": "^16.6.0"
+    "@nhost/nhost-js": "^2.0.4",
+    "@pinia/nuxt": "^0.4.7",
+    "graphql": "^16.6.0",
+    "pinia": "^2.0.32"
+  },
+  "devDependencies": {
+    "@cucumber/cucumber": "^8.11.1",
+    "@nuxtjs/apollo": "5.0.0-alpha.5",
+    "@nuxtjs/tailwindcss": "^6.4.1",
+    "@storybook/vue3-vite": "7.0.0-beta.50",
+    "nuxt": "^3.2.2",
+    "sass": "^1.58.3",
+    "storybook": "7.0.0-beta.50",
+    "vite-plugin-eslint": "^1.8.1",
+    "vitest": "^0.28.5"
   }
 }
