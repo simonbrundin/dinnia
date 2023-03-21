@@ -1,0 +1,1 @@
+import{h as e,o as t,e as s}from"./entry.e0843921.js";const r={},c={class:"text-white"};function o(a,n){return t(),s("div",c,"Du måste verifiera din epostadress")}const _=e(r,[["render",o]]);export{_ as default};
