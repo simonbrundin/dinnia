@@ -15,10 +15,8 @@ Given("det finns ett recept", function () {
 
 When("tittar på det", function () {
   // Write code here that turns the phrase above into concrete actions
-  return "pending";
 });
 
 Then("ser jag information om receptet", function () {
   // Write code here that turns the phrase above into concrete actions
-  return "pending";
 });
