@@ -20,7 +20,9 @@ jobs:
       - name: Kör tester
         run: pnpm test
       - name: Skapa Release Candidate
-        run: pnpm hello
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: .output
   acceptance:
     name: Acceptance Stage
     needs: commit
