@@ -22,7 +22,7 @@ jobs:
       - name: Skapa Release Candidate
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: .output
+          folder: .output/public
   acceptance:
     name: Acceptance Stage
     needs: commit
