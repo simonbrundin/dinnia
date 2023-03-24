@@ -19,7 +19,7 @@ jobs:
         run: pnpm generate
       - name: Kör tester
         run: pnpm test
-      - name: Skapa Release Candidate
+      - name: Skapa Release Candidate - Deployar just nu direkt men ska ändras till Production Stage
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: .output/public
