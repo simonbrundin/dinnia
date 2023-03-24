@@ -11,7 +11,10 @@
     "storybook": "storybook dev -p 6006"
   },
   "dependencies": {
+    "@heroicons/vue": "^2.0.16",
     "@nhost/nhost-js": "^2.0.4",
+    "@nhost/vue": "^1.13.17",
+    "@nuxt/image": "^0.7.1",
     "@pinia/nuxt": "^0.4.7",
     "graphql": "^16.6.0",
     "pinia": "^2.0.32"

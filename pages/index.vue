@@ -1,9 +1,16 @@
 <template>
-  <div class="text-white">
+  <div class="text-white flex flex-col gap-4 justify-center items-center">
     <div>{{ nhost.auth.getUser()?.email }}</div>
-    <div>{{ isAuthenticated }}</div>
-    <button @click="signOut()" class="text-white">Logga ut</button>
-    <button @click="navigateTo('/login')" class="text-white">Logga in</button>
+    <!-- <div>{{ isAuthenticated }}</div> -->
+
+    <div class="flex gap-4">
+      <button
+        @click="signOut()"
+        class="bg-slate-700 px-4 py-4 rounded-lg text-slate-50"
+      >
+        Logga ut
+      </button>
+    </div>
   </div>
 </template>
 

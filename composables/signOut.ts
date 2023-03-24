@@ -1,5 +1,5 @@
 export const signOut = () => {
   nhost.auth.signOut();
-  navigateTo("login");
+  navigateTo("auth/login");
   return;
 };

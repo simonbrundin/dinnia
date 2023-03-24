@@ -1,7 +1,7 @@
 import { useAuthStore } from "../stores/auth";
 const router = useRouter();
 const alreadyLoggedIn = () => nhost.auth.isAuthenticated();
-const loginWithPasskey = async (email: string) => {
+export const loginWithPasskey = async (email: string) => {
   const { error, session } = await nhost.auth.signIn({
     email,
     securityKey: true,
@@ -11,14 +11,14 @@ const loginWithPasskey = async (email: string) => {
     throw error;
   }
   if (!session) {
-    navigateTo("/verify-email");
+    navigateTo("/auth/verify");
     throw "User needs to verify email";
   }
   navigateTo("/");
 
   return session;
 };
-const loginWithMagicLink = async (email: string) => {
+export const loginWithMagicLink = async (email: string) => {
   const { error, session } = await nhost.auth.signIn({
     email,
   });
@@ -26,7 +26,23 @@ const loginWithMagicLink = async (email: string) => {
     throw error;
   }
   if (!session) {
-    navigateTo("/verify-email");
+    navigateTo("/auth/verify");
+    throw "User needs to verify email";
+  }
+  navigateTo("/");
+  return session;
+};
+
+const loginWithPassword = async (email: string, password: string) => {
+  const { error, session } = await nhost.auth.signIn({
+    email,
+    password,
+  });
+  if (error) {
+    throw error;
+  }
+  if (!session) {
+    navigateTo("/auth/verify");
     throw "User needs to verify email";
   }
   navigateTo("/");
@@ -40,29 +56,63 @@ export const signIn = async (email: string, password?: string) => {
   }
   let latestError;
   try {
-    await loginWithPasskey(email);
-    console.log("ok");
-    return;
-  } catch (error) {
-    console.log(error);
-    latestError = error;
-  }
-  try {
-    await loginWithMagicLink(email);
+    await signUp(email, password);
     return;
   } catch (error) {
     latestError = error;
   }
+  if (password) {
+    try {
+      await loginWithPassword(email, password);
+      const authStore = useAuthStore();
+      authStore.signInErrorMessage = "";
+      return;
+    } catch (error) {
+      const authStore = useAuthStore();
+      authStore.signInErrorMessage = error.message;
+    }
+  }
+  // const { key, error } = await nhost.auth.addSecurityKey();
+
+  // // Something unexpected happened
+  // if (error) {
+  //   console.log(error);
+  //   return;
+  // }
+
+  // // Successfully added a new security key
+  // console.log(key.id);
   // try {
-  //   await signUp(email, password);
+  //   await loginWithPasskey(email);
+  //   console.log("ok");
+  //   return;
+  // } catch (error) {
+  //   console.log(error);
+  //   latestError = error;
+  // }
+
+  // try {
+  //   await loginWithMagicLink(email);
   //   return;
   // } catch (error) {
   //   latestError = error;
   // }
-  if (latestError) {
-    const authStore = useAuthStore();
-    authStore.signInErrorMessage = latestError.message;
-  }
+  // if (password) {
+  //   try {
+  //     await loginWithPassword(email, password);
+  //     const authStore = useAuthStore();
+  //     authStore.signInErrorMessage = "";
+  //     return;
+  //   } catch (error) {
+  //     const authStore = useAuthStore();
+  //     authStore.signInErrorMessage = error.message;
+  //   }
+  // }
+
+  // if (latestError) {
+  //   const authStore = useAuthStore();
+  //   authStore.signInErrorMessage = latestError.message;
+  // }
 
   return;
 };
