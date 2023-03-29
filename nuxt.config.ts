@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   ssr: false,
   app: {
-    baseUrl: "/dinnia/", //Repots namn hos GitHub
+    baseURL: "/dinnia/", //Repots namn hos GitHub
   },
   autoImports: {
     dirs: [
