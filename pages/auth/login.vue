@@ -54,7 +54,10 @@
       <img src="@/assets/images/google-logo.png" class="w-4" srcset="" />
       <div>Fortsätt med Google</div>
     </button>
-    <!-- <div>{{ support_webauthn }}</div> -->
+    <div>
+      Saknar du ett konto?
+      <nuxt-link to="/auth/register" class="text-blue-500">Registera</nuxt-link>
+    </div>
   </div>
 </template>
 
