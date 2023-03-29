@@ -11,6 +11,8 @@
         Logga ut
       </button>
     </div>
+    <NuxtLink to="/ingredient/1">Ingredient 1</NuxtLink>
+    <NuxtLink to="/user/recipes">Mina recept</NuxtLink>
   </div>
 </template>
 

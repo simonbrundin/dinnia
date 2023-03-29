@@ -1,0 +1,7 @@
+query GetIngredient($id: Int = 1) {
+  ingredient(where: { id: { _eq: $id } }) {
+    id
+    name
+    standard_unit
+  }
+}
