@@ -1,4 +1,4 @@
-import{_ as u}from"./nuxt-link.5df000ab.js";import{g as _}from"./index.e8573970.js";import{B as l,f as d,A as p,o as r,h as a,F as m,G as f,u as y,q as h,s as x,b as g,t as v,p as w}from"./entry.3d94ff7d.js";async function A(o){const e=_`
+import{_ as u}from"./nuxt-link.c41a428a.js";import{g as _}from"./index.e198a6ba.js";import{B as l,f as d,A as p,o as r,h as a,F as m,G as f,u as y,q as h,s as x,b as g,t as v,p as w}from"./entry.745dcdc4.js";async function A(o){const e=_`
     query MyQuery($user_id: uuid!) {
       recipe(where: { user_id: { _eq: $user_id } }) {
         id

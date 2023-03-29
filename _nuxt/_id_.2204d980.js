@@ -1,4 +1,4 @@
-import{g}from"./index.e8573970.js";import{B as v,C as f,f as x,A as b,o as c,h as l,u as o,w as m,v as _,j as p,i as w,D as y,E as k}from"./entry.3d94ff7d.js";async function E(r){const n=g`
+import{g}from"./index.e198a6ba.js";import{B as v,C as f,f as x,A as b,o as c,h as l,u as o,w as m,v as _,j as p,i as w,D as y,E as k}from"./entry.745dcdc4.js";async function E(r){const n=g`
     query MyQuery($id: Int!) {
       ingredient_by_pk(id: $id) {
         id
