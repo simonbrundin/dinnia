@@ -1,8 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  extends: ["github:simonbrundin/base-nuxt"],
   ssr: false,
 
-  modules: ["@nuxtjs/tailwindcss", "@pinia/nuxt", "@nuxtjs/apollo"],
+  modules: ["@pinia/nuxt", "@nuxtjs/apollo", "@unocss/nuxt", "@nuxt/devtools"],
 
   css: [
     // SCSS file in the project

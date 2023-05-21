@@ -2,7 +2,7 @@
   <div class="text-white flex flex-col gap-4 justify-center items-center">
     <div>{{ nhost.auth.getUser()?.email }}</div>
     <!-- <div>{{ isAuthenticated }}</div> -->
-
+    <Icon i-carbon-logout color-white text-3xl />
     <div class="flex gap-4">
       <button
         @click="signOut()"
@@ -17,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-const isAuthenticated = await nhost.auth.isAuthenticatedAsync();
+const isAuthenticated = nhost.auth.isAuthenticatedAsync();
 </script>
 
 <style scoped>
